@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compara tu salario bruto anual con distribuciones salariales oficiales de España.">
+    <title>Salariometro — Tu sueldo, puesto en contexto</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#calculadora">Saltar a la calculadora</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Salariometro, inicio">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Salariometro</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#metodologia">Metodología</a>
+      </nav>
+      <span class="official-chip"><span aria-hidden="true"></span><b id="data-mode-label">Datos oficiales</b></span>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Salarios · España</p>
+          <h1 id="hero-title">Tu sueldo,<br><em>puesto en contexto.</em></h1>
+        </div>
+        <div class="hero-intro">
+          <p>Una cifra dice poco hasta que sabes con quién la comparas. Descubre tu posición salarial con una metodología abierta y fuentes oficiales.</p>
+          <ul aria-label="Principios de la herramienta">
+            <li>Sin registro</li>
+            <li>Cálculo privado</li>
+            <li>Fuente visible</li>
+          </ul>
+        </div>
+      </section>
+
+      <div id="demo-banner" class="demo-banner" role="status" hidden>
+        <strong>Vista de demostración.</strong>
+        Los porcentajes son ficticios y sirven únicamente para revisar la interfaz.
+      </div>
+
+      <section id="calculadora" class="calculator-shell" aria-label="Calculadora salarial">
+        <div class="input-panel">
+          <div class="panel-heading">
+            <span class="step-number" aria-hidden="true">01</span>
+            <div>
+              <p class="overline">El punto de partida</p>
+              <h2>¿Cuánto ganas al año?</h2>
+            </div>
+          </div>
+
+          <div class="scope-note">
+            <span aria-hidden="true">↗</span>
+            <p><strong>Solo jornada completa.</strong> La comparación inicial no incluye empleo parcial ni autónomos.</p>
+          </div>
+
+          <form id="salary-form" novalidate>
+            <label for="salary">Tu salario bruto anual</label>
+            <div class="salary-field">
+              <input
+                id="salary"
+                name="salary"
+                type="text"
+                inputmode="numeric"
+                autocomplete="off"
+                placeholder="30.000"
+                aria-describedby="salary-help salary-error"
+              >
+              <span>€ / año</span>
+            </div>
+            <p id="salary-help" class="field-help">Incluye pagas extra, bonus y variable de todo el año.</p>
+            <p id="salary-error" class="field-error" role="alert"></p>
+            <p id="monthly-equivalent" class="monthly-equivalent" aria-live="polite">La equivalencia mensual aparecerá aquí.</p>
+            <button class="primary-button" type="submit">
+              Ver mi posición
+              <span aria-hidden="true">→</span>
+            </button>
+          </form>
+
+          <details id="refine-comparison" class="refine">
+            <summary>
+              <span>
+                <small>Opcional</small>
+                Afina la comparación
+              </span>
+              <i aria-hidden="true"></i>
+            </summary>
+            <div class="refine-content">
+              <div class="field-row">
+                <label for="age">Edad</label>
+                <input id="age" name="age" type="number" inputmode="numeric" min="16" max="120" placeholder="Por ejemplo, 34">
+              </div>
+
+              <fieldset class="choice-field">
+                <legend>Sexo</legend>
+                <div class="choice-grid">
+                  <label><input type="radio" name="sex" value="woman"><span>Mujer</span></label>
+                  <label><input type="radio" name="sex" value="man"><span>Hombre</span></label>
+                  <label><input type="radio" name="sex" value="prefer_not_to_say" checked><span>Prefiero no decirlo</span></label>
+                </div>
+              </fieldset>
+
+              <div class="field-row">
+                <label for="region">Comunidad de residencia</label>
+                <select id="region" name="region">
+                  <option value="">Sin seleccionar</option>
+                  <option value="01">Andalucía</option>
+                  <option value="02">Aragón</option>
+                  <option value="03">Principado de Asturias</option>
+                  <option value="04">Illes Balears</option>
+                  <option value="05">Canarias</option>
+                  <option value="06">Cantabria</option>
+                  <option value="07">Castilla y León</option>
+                  <option value="08">Castilla-La Mancha</option>
+                  <option value="09">Cataluña</option>
+                  <option value="10">Comunitat Valenciana</option>
+                  <option value="11">Extremadura</option>
+                  <option value="12">Galicia</option>
+                  <option value="13">Comunidad de Madrid</option>
+                  <option value="14">Región de Murcia</option>
+                  <option value="15">Navarra</option>
+                  <option value="16">País Vasco</option>
+                  <option value="17">La Rioja</option>
+                  <option value="18">Ceuta</option>
+                  <option value="19">Melilla</option>
+                </select>
+              </div>
+
+              <div class="field-row">
+                <label for="city">Ciudad de residencia</label>
+                <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="Escribe tu ciudad">
+              </div>
+            </div>
+          </details>
+
+          <div class="privacy-note">
+            <span aria-hidden="true">⌁</span>
+            <p><strong>Se queda en tu navegador.</strong> No guardamos ni enviamos tu salario o tus datos opcionales.</p>
+          </div>
+        </div>
+
+        <div id="result-panel" class="result-panel" aria-live="polite" aria-busy="true">
+          <div id="result-loading" class="result-state">
+            <p class="overline light">Preparando la comparación</p>
+            <h2>Comprobando los datos disponibles…</h2>
+          </div>
+
+          <div id="result-empty" class="result-state" hidden>
+            <p class="overline light">Tu posición salarial</p>
+            <h2>Introduce tu sueldo para situarlo en el mapa.</h2>
+            <p>El resultado dira cuantas personas asalariadas quedan por debajo, no cuanto te separa de una media.</p>
+            <div class="empty-grid" aria-hidden="true"></div>
+          </div>
+
+          <div id="result-unavailable" class="result-state unavailable-state" hidden>
+            <span class="state-symbol" aria-hidden="true">⌛</span>
+            <p class="overline light">Datos en validación</p>
+            <h2>El cálculo aún no está publicado.</h2>
+            <p>Estamos preparando la distribución oficial del INE. Hasta que supere todos los controles no mostraremos un porcentaje provisional.</p>
+            <a href="#metodologia">Por qué preferimos esperar <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div id="result-ready" hidden>
+            <div class="result-heading">
+              <div>
+                <p class="overline light">Tu posición salarial</p>
+                <p class="result-count"><strong id="percentile-number">—</strong><span>de cada 100</span></p>
+              </div>
+              <span id="quality-badge" class="quality-badge">Muestra validada</span>
+            </div>
+
+            <p id="result-statement" class="result-statement"></p>
+            <p id="result-context" class="result-context"></p>
+
+            <div class="rank-visual">
+              <div id="percentile-dots" class="percentile-dots" role="img"></div>
+              <div class="rank-legend">
+                <span><i class="dot filled"></i> Salarios inferiores</span>
+                <span><i class="dot"></i> Resto de la distribución</span>
+              </div>
+            </div>
+
+            <div id="comparison-list" class="comparison-list"></div>
+
+            <details id="source-details" class="source-details">
+              <summary>Fuente y alcance <span aria-hidden="true">＋</span></summary>
+              <div>
+                <p><strong id="source-name">Instituto Nacional de Estadistica</strong></p>
+                <p id="source-description"></p>
+                <p>Cálculo ponderado. Las personas con exactamente el mismo salario no cuentan como salarios inferiores.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="como-funciona" class="explanation-section">
+        <div>
+          <p class="eyebrow">Una lectura honesta</p>
+          <h2>No es una nota.<br>Es una posición.</h2>
+        </div>
+        <ol>
+          <li><span>01</span><div><h3>Escribes el bruto anual</h3><p>El total antes de impuestos, con extras y variable.</p></div></li>
+          <li><span>02</span><div><h3>Buscamos tu cohorte</h3><p>Siempre dentro de una distribución oficial compatible.</p></div></li>
+          <li><span>03</span><div><h3>Contamos a quienes quedan por debajo</h3><p>Usamos las ponderaciones de la fuente, no una media disfrazada de percentil.</p></div></li>
+        </ol>
+      </section>
+
+      <section id="metodologia" class="method-section">
+        <div>
+          <p class="eyebrow">Metodología abierta</p>
+          <h2>El número importa.<br>Su contexto también.</h2>
+        </div>
+        <div class="method-copy">
+          <p>Salariometro calcula la proporción ponderada de la población de referencia con un salario estrictamente inferior al introducido. No deduce percentiles desde la media o la mediana.</p>
+          <a href="./docs/contrato-estadistico.md">Leer el contrato estadístico <span aria-hidden="true">↗</span></a>
+          <a href="./docs/fuentes-oficiales.md">Consultar las fuentes evaluadas <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Salariometro</a>
+      <p>Una herramienta independiente construida con datos públicos oficiales.</p>
+      <p>Los resultados son informativos y no sustituyen asesoramiento laboral o fiscal.</p>
+    </footer>
+  </body>
+</html>
