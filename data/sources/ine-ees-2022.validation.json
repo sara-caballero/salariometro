@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "ine-ees-2022",
+  "officialTable": {
+    "id": "36832",
+    "title": "Medias y percentiles por sexo y tipo de jornada",
+    "url": "https://www.ine.es/jaxiT3/Tabla.htm?t=36832",
+    "csvUrl": "https://www.ine.es/jaxiT3/files/t/csv_bdsc/36832.csv",
+    "referenceYear": 2022,
+    "workingTime": "Jornada a tiempo completo",
+    "retrievedAt": "2026-09-19"
+  },
+  "checks": [
+    { "cohortId": "national", "statistic": "mean", "expected": 30998.32, "tolerance": 0.02 },
+    { "cohortId": "national", "statistic": "percentiles.10", "expected": 15750.49, "tolerance": 0.05 },
+    { "cohortId": "national", "statistic": "percentiles.25", "expected": 19239.40, "tolerance": 0.05 },
+    { "cohortId": "national", "statistic": "percentiles.50", "expected": 25687.05, "tolerance": 0.05 },
+    { "cohortId": "national", "statistic": "percentiles.75", "expected": 37425.29, "tolerance": 0.05 },
+    { "cohortId": "national", "statistic": "percentiles.90", "expected": 52401.01, "tolerance": 0.05 },
+    { "cohortId": "sex:woman", "statistic": "mean", "expected": 29931.69, "tolerance": 1.00 },
+    { "cohortId": "sex:woman", "statistic": "percentiles.10", "expected": 15224.00, "tolerance": 1.00 },
+    { "cohortId": "sex:woman", "statistic": "percentiles.25", "expected": 18448.05, "tolerance": 1.00 },
+    { "cohortId": "sex:woman", "statistic": "percentiles.50", "expected": 25151.15, "tolerance": 1.00 },
+    { "cohortId": "sex:woman", "statistic": "percentiles.75", "expected": 36574.21, "tolerance": 1.00 },
+    { "cohortId": "sex:woman", "statistic": "percentiles.90", "expected": 49970.06, "tolerance": 1.00 },
+    { "cohortId": "sex:man", "statistic": "mean", "expected": 31785.41, "tolerance": 1.00 },
+    { "cohortId": "sex:man", "statistic": "percentiles.10", "expected": 16257.19, "tolerance": 1.00 },
+    { "cohortId": "sex:man", "statistic": "percentiles.25", "expected": 19800.13, "tolerance": 1.00 },
+    { "cohortId": "sex:man", "statistic": "percentiles.50", "expected": 26105.00, "tolerance": 1.00 },
+    { "cohortId": "sex:man", "statistic": "percentiles.75", "expected": 38047.06, "tolerance": 1.00 },
+    { "cohortId": "sex:man", "statistic": "percentiles.90", "expected": 54202.46, "tolerance": 1.00 }
+  ]
+}
+

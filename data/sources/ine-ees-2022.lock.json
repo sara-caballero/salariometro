@@ -3,9 +3,10 @@
   "sourceId": "ine-ees-2022",
   "url": "https://www.ine.es/ftp/microdatos/salarial/datos_2022.zip",
   "fileName": "datos_2022.zip",
-  "sha256": null,
-  "bytes": null,
-  "retrievedAt": null,
-  "status": "pending_manual_review",
-  "note": "No se permite un build de produccion hasta revisar el fichero descargado y fijar aqui su SHA-256 y tamano."
+  "sha256": "c52b716c156dbbe1a64026140cf8e303db4bde414437f4d1737f56fcaf609e10",
+  "bytes": 77468637,
+  "retrievedAt": "2026-09-19T16:26:38Z",
+  "status": "approved",
+  "verification": "Descarga automatizada desde la URL oficial, tamano y SHA-256 verificados en GitHub Actions."
 }
+

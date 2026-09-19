@@ -13,6 +13,8 @@
     "data:inspect": "node scripts/inspect-csv.mjs",
     "data:normalize": "node scripts/normalize-ees-2022.mjs",
     "data:build": "node scripts/build-distributions.mjs",
+    "data:validate:official": "node scripts/validate-official-aggregates.mjs",
     "data:validate": "node scripts/validate-derived.mjs"
   }
 }
+

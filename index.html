@@ -25,21 +25,16 @@
     <main id="top">
       <section class="tool-intro" aria-labelledby="hero-title">
         <div>
-          <p class="eyebrow">Calculadora salarial</p>
-          <h1 id="hero-title">Compara tu salario.</h1>
-          <p>Introduce tu salario bruto anual para calcular qué porcentaje de personas asalariadas a jornada completa tiene un salario inferior.</p>
+          <p class="eyebrow">Datos oficiales del INE</p>
+          <h1 id="hero-title">¿Dónde está tu sueldo?</h1>
+          <p>Compara tu salario bruto anual con las personas asalariadas a jornada completa de la Encuesta de Estructura Salarial 2022.</p>
         </div>
         <dl class="scope-summary">
           <div><dt>Unidad</dt><dd>Euros brutos al año</dd></div>
           <div><dt>Población</dt><dd>Asalariados a jornada completa</dd></div>
-          <div><dt>Ámbito inicial</dt><dd>España</dd></div>
+          <div><dt>Fuente</dt><dd>INE, EES 2022</dd></div>
         </dl>
       </section>
-
-      <div id="demo-banner" class="demo-banner" role="status" hidden>
-        <strong>Vista de demostración.</strong>
-        Los porcentajes son ficticios y sirven únicamente para revisar la interfaz.
-      </div>
 
       <section id="calculadora" class="calculator-shell" aria-label="Calculadora salarial">
         <div class="input-panel">
@@ -102,34 +97,18 @@
               </fieldset>
 
               <div class="field-row">
-                <label for="region">Comunidad de residencia</label>
+                <label for="region">Macroregión del centro de trabajo</label>
                 <select id="region" name="region">
                   <option value="">Sin seleccionar</option>
-                  <option value="01">Andalucía</option>
-                  <option value="02">Aragón</option>
-                  <option value="03">Principado de Asturias</option>
-                  <option value="04">Illes Balears</option>
-                  <option value="05">Canarias</option>
-                  <option value="06">Cantabria</option>
-                  <option value="07">Castilla y León</option>
-                  <option value="08">Castilla-La Mancha</option>
-                  <option value="09">Cataluña</option>
-                  <option value="10">Comunitat Valenciana</option>
-                  <option value="11">Extremadura</option>
-                  <option value="12">Galicia</option>
-                  <option value="13">Comunidad de Madrid</option>
-                  <option value="14">Región de Murcia</option>
-                  <option value="15">Navarra</option>
-                  <option value="16">País Vasco</option>
-                  <option value="17">La Rioja</option>
-                  <option value="18">Ceuta</option>
-                  <option value="19">Melilla</option>
+                  <option value="1">Noroeste</option>
+                  <option value="2">Noreste</option>
+                  <option value="3">Comunidad de Madrid</option>
+                  <option value="4">Centro</option>
+                  <option value="5">Este</option>
+                  <option value="6">Sur</option>
+                  <option value="7">Canarias</option>
                 </select>
-              </div>
-
-              <div class="field-row">
-                <label for="city">Ciudad de residencia</label>
-                <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="Escribe tu ciudad">
+                <p class="field-help">La EES publica siete regiones NUTS1 vinculadas al centro de trabajo, no al domicilio.</p>
               </div>
             </div>
           </details>
@@ -154,11 +133,11 @@
           </div>
 
           <div id="result-unavailable" class="result-state unavailable-state" hidden>
-            <span class="state-symbol" aria-hidden="true">⌛</span>
-            <p class="overline light">Datos en validación</p>
-            <h2>El cálculo aún no está publicado.</h2>
-            <p>Estamos preparando la distribución oficial del INE. Hasta que supere todos los controles no mostraremos un porcentaje provisional.</p>
-            <a href="#metodologia">Por qué preferimos esperar <span aria-hidden="true">→</span></a>
+            <span class="state-symbol" aria-hidden="true">!</span>
+            <p class="overline light">Cálculo no disponible</p>
+            <h2>No se puede mostrar el resultado.</h2>
+            <p id="unavailable-message">No se ha podido cargar el fichero de datos.</p>
+            <a href="./metodologia.html">Consultar fuentes y método <span aria-hidden="true">→</span></a>
           </div>
 
           <div id="result-ready" hidden>
@@ -172,6 +151,11 @@
 
             <p id="result-statement" class="result-statement"></p>
             <p id="result-context" class="result-context"></p>
+
+            <dl class="national-statistics">
+              <div><dt>Mediana del grupo</dt><dd id="national-median">...</dd></div>
+              <div><dt>Media del grupo</dt><dd id="national-mean">...</dd></div>
+            </dl>
 
             <div class="rank-visual">
               <div id="percentile-dots" class="percentile-dots" role="img"></div>
@@ -188,7 +172,9 @@
               <div>
                 <p><strong id="source-name">Instituto Nacional de Estadistica</strong></p>
                 <p id="source-description"></p>
+                <p id="source-sample"></p>
                 <p>Cálculo ponderado. Las personas con exactamente el mismo salario no cuentan como salarios inferiores.</p>
+                <p><a href="./metodologia.html">Definiciones, fórmula y límites</a></p>
               </div>
             </details>
           </div>
@@ -214,3 +200,4 @@
     </footer>
   </body>
 </html>
+

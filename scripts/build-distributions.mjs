@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readFile, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildDistributionSet } from "../src/data/build-distributions.mjs";
@@ -40,5 +40,7 @@ const dataset = buildDistributionSet(records, {
   cautionSampleCount: 500
 });
 assertValidDistributionSet(dataset);
-await writeFile(outputPath, `${JSON.stringify(dataset)}\n`, { flag: "wx" });
+await mkdir(path.dirname(outputPath), { recursive: true });
+await writeFile(outputPath, `${JSON.stringify(dataset)}\n`);
 console.log(`Distribuciones creadas en ${outputPath}. Estado: review_required.`);
+

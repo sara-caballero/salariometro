@@ -1,0 +1,75 @@
+name: Build official salary data
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/build-official-data.yml"
+      - "data/sources/ine-ees-2022.lock.json"
+      - "data/sources/ine-ees-2022.mapping.json"
+      - "data/sources/ine-ees-2022.validation.json"
+      - "scripts/build-distributions.mjs"
+      - "scripts/normalize-ees-2022.mjs"
+      - "scripts/validate-official-aggregates.mjs"
+      - "src/data/**"
+      - "src/statistics/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-official-salary-data
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test the statistical engine
+        run: npm test
+
+      - name: Download and verify the official source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/raw/ine-ees-2022 data/work/ine-ees-2022
+          curl --fail --location --retry 3 \
+            --user-agent "Salariometro data pipeline/1.0" \
+            "https://www.ine.es/ftp/microdatos/salarial/datos_2022.zip" \
+            --output data/raw/ine-ees-2022/datos_2022.zip
+          echo "c52b716c156dbbe1a64026140cf8e303db4bde414437f4d1737f56fcaf609e10  data/raw/ine-ees-2022/datos_2022.zip" | sha256sum --check
+          test "$(stat --printf='%s' data/raw/ine-ees-2022/datos_2022.zip)" = "77468637"
+          unzip -p data/raw/ine-ees-2022/datos_2022.zip "CSV/EES_2022.tab" \
+            > data/work/ine-ees-2022/EES_2022.tab
+
+      - name: Build and validate the browser dataset
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run data:normalize -- \
+            --input data/work/ine-ees-2022/EES_2022.tab \
+            --mapping data/sources/ine-ees-2022.mapping.json
+          npm run data:build
+          npm run data:validate:official
+          npm run data:validate
+
+      - name: Commit the validated derived dataset
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/derived/distributions-ees-2022.json
+          if git diff --cached --quiet; then
+            echo "The validated dataset is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Build validated EES 2022 salary distributions"
+          git push
+

@@ -1,8 +1,4 @@
-const ALLOWED_DIMENSION_KEYS = new Set(["country", "workingTime", "sex", "ageBand"]);
-
-function nearlyEqual(left, right) {
-  return Math.abs(left - right) <= Math.max(1e-8, Math.abs(right) * 1e-10);
-}
+const ALLOWED_DIMENSION_KEYS = new Set(["country", "workingTime", "sex", "ageBand", "workplaceRegion"]);
 
 export function validateDistributionSet(dataset, options = {}) {
   const errors = [];
@@ -13,8 +9,8 @@ export function validateDistributionSet(dataset, options = {}) {
   if (!dataset || typeof dataset !== "object") {
     return ["El conjunto derivado no es un objeto."];
   }
-  if (dataset.schemaVersion !== 1) {
-    errors.push("schemaVersion debe ser 1.");
+  if (dataset.schemaVersion !== 2) {
+    errors.push("schemaVersion debe ser 2.");
   }
   if (!["review_required", "validated", "synthetic"].includes(dataset.publicationStatus)) {
     errors.push("publicationStatus no es valido.");
@@ -25,11 +21,14 @@ export function validateDistributionSet(dataset, options = {}) {
   if (!dataset.provenance?.sourceId || !Number.isInteger(dataset.provenance?.referenceYear)) {
     errors.push("Faltan sourceId o referenceYear en provenance.");
   }
-  if (dataset.publicationStatus !== "synthetic" && !dataset.provenance?.rawSha256) {
-    errors.push("Falta la huella SHA-256 del fichero raw.");
+  if (dataset.publicationStatus !== "synthetic" && !/^[a-f0-9]{64}$/.test(dataset.provenance?.rawSha256 ?? "")) {
+    errors.push("Falta una huella SHA-256 valida del fichero raw.");
   }
   if (dataset.contract?.statistic !== "weighted_empirical_percentile_strictly_below") {
     errors.push("El contrato estadistico no coincide con el motor.");
+  }
+  if (dataset.contract?.displayResolution !== "integer_percentage_point") {
+    errors.push("La resolucion de publicacion no coincide con el motor.");
   }
   if (!Number.isInteger(minimumSampleCount) || minimumSampleCount < 1) {
     errors.push("minimumSampleCount no es valido.");
@@ -67,35 +66,52 @@ export function validateDistributionSet(dataset, options = {}) {
     if (!Number.isFinite(cohort?.weightedPopulation) || cohort.weightedPopulation <= 0) {
       errors.push(`${prefix}: poblacion ponderada invalida.`);
     }
+    if (!Number.isFinite(cohort?.statistics?.mean) || cohort.statistics.mean < 0) {
+      errors.push(`${prefix}: media invalida.`);
+    }
+    if (!Number.isFinite(cohort?.statistics?.median) || cohort.statistics.median < 0) {
+      errors.push(`${prefix}: mediana invalida.`);
+    }
+    let previousPercentile = Number.NEGATIVE_INFINITY;
+    for (const percentile of ["10", "25", "50", "75", "90"]) {
+      const value = cohort?.statistics?.percentiles?.[percentile];
+      if (!Number.isFinite(value) || value < 0 || value < previousPercentile) {
+        errors.push(`${prefix}: percentil ${percentile} invalido.`);
+      }
+      previousPercentile = value;
+    }
+    if (cohort?.statistics?.percentiles?.["50"] !== cohort?.statistics?.median) {
+      errors.push(`${prefix}: la mediana no coincide con el percentil 50.`);
+    }
     if (!["caution", "publishable"].includes(cohort?.quality)) {
       errors.push(`${prefix}: quality invalida.`);
     } else if (!synthetic && cohort.sampleCount < cautionSampleCount && cohort.quality !== "caution") {
       errors.push(`${prefix}: una muestra menor que ${cautionSampleCount} debe marcarse caution.`);
     }
-    if (!Array.isArray(cohort?.points) || cohort.points.length === 0) {
-      errors.push(`${prefix}: points debe contener observaciones.`);
+    if (!Array.isArray(cohort?.rankSteps) || cohort.rankSteps.length === 0) {
+      errors.push(`${prefix}: rankSteps debe contener observaciones.`);
       continue;
     }
 
     let previousSalary = Number.NEGATIVE_INFINITY;
-    let previousCumulativeWeight = 0;
-    for (const point of cohort.points) {
+    let previousDisplayPercent = 0;
+    for (const point of cohort.rankSteps) {
       if (!Array.isArray(point) || point.length !== 2) {
-        errors.push(`${prefix}: punto mal formado.`);
+        errors.push(`${prefix}: escalon mal formado.`);
         continue;
       }
-      const [salary, cumulativeWeight] = point;
+      const [salary, displayPercent] = point;
       if (!Number.isFinite(salary) || salary < 0 || salary <= previousSalary) {
         errors.push(`${prefix}: salarios no estrictamente ordenados.`);
       }
-      if (!Number.isFinite(cumulativeWeight) || cumulativeWeight <= previousCumulativeWeight) {
-        errors.push(`${prefix}: pesos acumulados no estrictamente crecientes.`);
+      if (!Number.isInteger(displayPercent) || displayPercent < 1 || displayPercent > 100 || displayPercent <= previousDisplayPercent) {
+        errors.push(`${prefix}: porcentajes publicados no estrictamente crecientes.`);
       }
       previousSalary = salary;
-      previousCumulativeWeight = cumulativeWeight;
+      previousDisplayPercent = displayPercent;
     }
-    if (!nearlyEqual(previousCumulativeWeight, cohort.weightedPopulation)) {
-      errors.push(`${prefix}: el ultimo peso acumulado no coincide con weightedPopulation.`);
+    if (previousDisplayPercent !== 100) {
+      errors.push(`${prefix}: el ultimo porcentaje publicado debe ser 100.`);
     }
   }
 
@@ -108,3 +124,4 @@ export function assertValidDistributionSet(dataset, options = {}) {
     throw new Error(`Distribucion derivada invalida:\n- ${errors.join("\n- ")}`);
   }
 }
+

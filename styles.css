@@ -758,6 +758,40 @@ main {
   font-size: 0.86rem;
 }
 
+.national-statistics {
+  margin: 1.5rem 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.national-statistics div {
+  padding: 0.9rem 1rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.national-statistics dt,
+.national-statistics dd,
+.comparison-statistics dt,
+.comparison-statistics dd {
+  margin: 0;
+}
+
+.national-statistics dt {
+  color: #bfcfc6;
+  font-size: 0.67rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.national-statistics dd {
+  margin-top: 0.25rem;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+}
+
 .rank-visual {
   margin-top: 2.4rem;
   padding: 1.3rem;
@@ -849,6 +883,31 @@ main {
   color: #cbd9d1;
   font-size: 0.74rem;
   line-height: 1.35;
+}
+
+.comparison-statistics {
+  margin: 0.8rem 0 0;
+  padding-top: 0.65rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  border-top: 1px solid rgba(255,255,255,0.14);
+}
+
+.comparison-statistics dt {
+  color: #bfcfc6;
+  font-size: 0.62rem;
+}
+
+.comparison-statistics dd {
+  margin-top: 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.source-details a {
+  color: var(--paper);
+  text-underline-offset: 3px;
 }
 
 .source-details {
@@ -1173,6 +1232,10 @@ footer p:last-child {
   }
 
   .comparison-list {
+    grid-template-columns: 1fr;
+  }
+
+  .national-statistics {
     grid-template-columns: 1fr;
   }
 
@@ -1519,3 +1582,4 @@ footer p:last-child {
     text-align: left !important;
   }
 }
+

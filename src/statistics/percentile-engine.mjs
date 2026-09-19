@@ -1,4 +1,5 @@
 import { ageToBand, getAgeBand } from "./age-bands.mjs";
+import { getWorkplaceRegion } from "./workplace-regions.mjs";
 import { assertValidDistributionSet } from "../data/validate-derived.mjs";
 
 function unavailable(reason, message) {
@@ -7,17 +8,14 @@ function unavailable(reason, message) {
 
 function resolveComparison(comparison) {
   if (!comparison || comparison.kind === "national") {
-    return {
-      id: "national",
-      label: "los asalariados a jornada completa en España"
-    };
+    return { id: "national", label: "los asalariados a jornada completa en España" };
   }
 
   if (comparison.kind === "sex") {
     if (comparison.value === "prefer_not_to_say") {
       return unavailable("not_provided", "No se ha solicitado una comparación por sexo.");
     }
-    if (!['woman', 'man'].includes(comparison.value)) {
+    if (!["woman", "man"].includes(comparison.value)) {
       return { status: "invalid_input", reason: "invalid_sex", message: "La categoría de sexo no es válida." };
     }
     return {
@@ -41,7 +39,7 @@ function resolveComparison(comparison) {
   }
 
   if (comparison.kind === "sex_age") {
-    if (!['woman', 'man'].includes(comparison.sex)) {
+    if (!["woman", "man"].includes(comparison.sex)) {
       return { status: "invalid_input", reason: "invalid_sex", message: "La categoría de sexo no es válida." };
     }
     const band = ageToBand(comparison.age);
@@ -56,36 +54,34 @@ function resolveComparison(comparison) {
     };
   }
 
-  if (comparison.kind === "autonomous_community_residence") {
+  if (comparison.kind === "workplace_region") {
+    const region = getWorkplaceRegion(comparison.code);
+    if (!region) {
+      return { status: "invalid_input", reason: "invalid_workplace_region", message: "La macroregión no es válida." };
+    }
     return {
-      id: `ccaa-residence:${comparison.code}`,
-      label: `los asalariados a jornada completa residentes en ${comparison.label ?? comparison.code}`
-    };
-  }
-
-  if (comparison.kind === "city_residence") {
-    return {
-      id: `city-residence:${comparison.code}`,
-      label: `los asalariados a jornada completa residentes en ${comparison.label ?? comparison.code}`
+      id: `workplace-region:${region.code}`,
+      label: `los asalariados a jornada completa cuyo centro de trabajo está en ${region.label}`,
+      workplaceRegion: region.code,
+      workplaceRegionLabel: region.label
     };
   }
 
   return { status: "invalid_input", reason: "invalid_comparison", message: "El tipo de comparación no es válido." };
 }
 
-export function weightedPercentile(points, weightedPopulation, salary) {
+export function roundedPercentile(rankSteps, salary) {
   let low = 0;
-  let high = points.length;
+  let high = rankSteps.length;
   while (low < high) {
     const middle = Math.floor((low + high) / 2);
-    if (points[middle][0] < salary) {
+    if (rankSteps[middle][0] < salary) {
       low = middle + 1;
     } else {
       high = middle;
     }
   }
-  const lowerWeight = low === 0 ? 0 : points[low - 1][1];
-  return (100 * lowerWeight) / weightedPopulation;
+  return low === 0 ? 0 : rankSteps[low - 1][1];
 }
 
 export function compareSalary(dataset, request, options = {}) {
@@ -105,35 +101,31 @@ export function compareSalary(dataset, request, options = {}) {
   }
   const cohort = dataset.cohorts.find((candidate) => candidate.id === resolved.id);
   if (!cohort) {
-    if (request.comparison?.kind === "city_residence") {
-      return unavailable("city_distribution_unavailable", "No hay datos disponibles para esta ciudad.");
-    }
-    if (request.comparison?.kind === "autonomous_community_residence") {
-      return unavailable(
-        "residence_distribution_unavailable",
-        "No hay una distribución compatible por comunidad autónoma de residencia."
-      );
-    }
     return unavailable("cohort_unavailable", "No hay datos fiables para esta comparación.");
   }
 
-  const percentile = weightedPercentile(cohort.points, cohort.weightedPopulation, request.salary);
-  const displayPercent = Math.round(percentile);
+  const displayPercent = roundedPercentile(cohort.rankSteps, request.salary);
   return {
     status: "ok",
-    percentile,
     displayPercent,
     statement: `Ganas más que el ${displayPercent} % de ${resolved.label}.`,
     cohortId: cohort.id,
     ageBand: resolved.ageBand ?? cohort.dimensions.ageBand ?? null,
     ageBandLabel: resolved.ageBand ? getAgeBand(resolved.ageBand)?.label ?? null : null,
+    workplaceRegion: resolved.workplaceRegion ?? cohort.dimensions.workplaceRegion ?? null,
+    workplaceRegionLabel: resolved.workplaceRegionLabel ?? null,
+    statistics: cohort.statistics,
     quality: cohort.quality,
     sampleCount: cohort.sampleCount,
+    weightedPopulation: cohort.weightedPopulation,
     source: {
       organization: dataset.provenance.sourceOrganization,
+      dataset: dataset.provenance.dataset,
       sourceId: dataset.provenance.sourceId,
       referenceYear: dataset.provenance.referenceYear,
+      publishedAt: dataset.provenance.publishedAt,
       rawSha256: dataset.provenance.rawSha256
     }
   };
 }
+
