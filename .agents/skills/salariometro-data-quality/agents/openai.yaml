@@ -1,0 +1,4 @@
+interface:
+  display_name: "Salariometro Data Quality"
+  short_description: "Verifica datos y calculos salariales"
+  default_prompt: "Usa $salariometro-data-quality para validar esta fuente o calculo salarial antes de publicarlo."
