@@ -1,0 +1,24 @@
+name: Inspect official aggregate table
+
+on:
+  push:
+    paths:
+      - ".github/workflows/inspect-official-table.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download and print official table
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 \
+            "https://www.ine.es/jaxiT3/files/t/csv_bdsc/36832.csv" \
+            --output table.csv
+          file table.csv
+          wc -c table.csv
+          sed -n '1,120p' table.csv
