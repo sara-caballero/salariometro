@@ -1,0 +1,17 @@
+{
+  "name": "salariometro",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test",
+    "data:fetch": "node scripts/fetch-source.mjs --source ine-ees-2022",
+    "data:inspect": "node scripts/inspect-csv.mjs",
+    "data:normalize": "node scripts/normalize-ees-2022.mjs",
+    "data:build": "node scripts/build-distributions.mjs",
+    "data:validate": "node scripts/validate-derived.mjs"
+  }
+}

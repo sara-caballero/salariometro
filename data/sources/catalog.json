@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-19",
+  "productContract": {
+    "measure": "annual_gross_salary_eur",
+    "population": "employees_full_time",
+    "geographyInput": "residence",
+    "statistic": "weighted_empirical_percentile_strictly_below"
+  },
+  "sources": [
+    {
+      "id": "ine-ees-2022",
+      "organization": "Instituto Nacional de Estadistica (INE)",
+      "dataset": "Encuesta de Estructura Salarial 2022, microdatos anonimizados",
+      "referenceYear": 2022,
+      "publishedAt": "2024-09-23",
+      "officialResultsUrl": "https://www.ine.es/dyngs/INEbase/operacion.htm?c=Estadistica_C&cid=1254736177025&idp=1254735976596&menu=resultados",
+      "directDownloadUrl": "https://www.ine.es/ftp/microdatos/salarial/datos_2022.zip",
+      "methodologyUrl": "https://www.ine.es/metodologia/t22/meto_ees22.pdf",
+      "kind": "official_anonymized_microdata",
+      "decision": "primary",
+      "supports": [
+        "national_percentile",
+        "sex_percentile",
+        "age_band_percentile",
+        "sex_age_joint_percentile_when_reliable"
+      ],
+      "doesNotSupport": [
+        "residence_autonomous_community_percentile",
+        "municipality_percentile"
+      ],
+      "reason": "Permite calcular la funcion de distribucion empirica ponderada y filtrar jornada completa. La geografia de la encuesta se refiere al centro o cuenta de cotizacion, no acredita residencia del trabajador.",
+      "coverageNotes": [
+        "Excluye agricultura, ganaderia, silvicultura y pesca, hogares como empleadores y organismos extraterritoriales.",
+        "La cobertura de Administracion publica no es completa.",
+        "La ganancia anual puede estar anualizada segun las reglas de la operacion.",
+        "Los resultados derivados son elaboracion propia; debe citarse al INE como fuente primaria."
+      ]
+    },
+    {
+      "id": "ine-eaes-2024",
+      "organization": "Instituto Nacional de Estadistica (INE)",
+      "dataset": "Encuesta Anual de Estructura Salarial 2024",
+      "referenceYear": 2024,
+      "publishedAt": "2026-05-28",
+      "officialResultsUrl": "https://www.ine.es/dyngs/Prensa/EAES2024.htm",
+      "kind": "official_aggregate_tables",
+      "decision": "validation_only",
+      "supports": [
+        "national_distribution_sanity_check",
+        "current_mean_and_median_context"
+      ],
+      "doesNotSupport": [
+        "arbitrary_exact_full_time_percentile_by_user_salary",
+        "joint_subgroup_percentile"
+      ],
+      "reason": "Es la referencia anual mas reciente, pero las tablas publicas agregadas no ofrecen la distribucion individual completa y ponderada necesaria para todos los filtros del producto."
+    },
+    {
+      "id": "ine-epa-wage-deciles-2024",
+      "organization": "Instituto Nacional de Estadistica (INE)",
+      "dataset": "Decil de salarios del empleo principal, EPA 2024",
+      "referenceYear": 2024,
+      "publishedAt": "2025-11-14",
+      "officialResultsUrl": "https://www.ine.es/dyngs/Prensa/dsEPA2024.htm",
+      "methodologyUrl": "https://ine.es/inebaseDYN/epa30308/docs/decilepa.htm",
+      "kind": "official_aggregate_tables",
+      "decision": "context_only",
+      "supports": [
+        "monthly_wage_decile_context_by_sex_age_region_and_working_time"
+      ],
+      "doesNotSupport": [
+        "annual_salary_contract",
+        "arbitrary_exact_percentile"
+      ],
+      "reason": "Mide salario bruto mensual del empleo principal y publica deciles o bandas; interpolarlos no produciria un percentil exacto anual."
+    },
+    {
+      "id": "aeat-mercado-trabajo-2024",
+      "organization": "Agencia Estatal de Administracion Tributaria (AEAT)",
+      "dataset": "Mercado de Trabajo y Pensiones en las Fuentes Tributarias 2024",
+      "referenceYear": 2024,
+      "officialResultsUrl": "https://sede.agenciatributaria.gob.es/Sede/estadisticas/mercado-trabajo-pensiones-fuentes-tributarias.html",
+      "methodologyUrl": "https://sede.agenciatributaria.gob.es/static_files/Sede/Tema/Estadisticas/Recaudacion_Tributaria/Informes_anuales/DistribucionSalariosNotaMetodologica.pdf",
+      "kind": "official_administrative_aggregate_tables",
+      "decision": "context_only",
+      "supports": [
+        "salary_band_context_by_tax_geography_and_sex"
+      ],
+      "doesNotSupport": [
+        "full_time_population_filter",
+        "arbitrary_exact_percentile",
+        "single_full_year_job_contract"
+      ],
+      "reason": "Es una explotacion censal del modelo 190, pero las tablas ordinarias incluyen relaciones laborales de duracion parcial y multiples pagadores y no aislan la poblacion a jornada completa requerida."
+    },
+    {
+      "id": "idescat-territorial-wages-2024",
+      "organization": "Institut d'Estadistica de Catalunya (Idescat)",
+      "dataset": "Estadistica de salarios territorial 2024",
+      "referenceYear": 2024,
+      "publishedAt": "2025-12-17",
+      "officialResultsUrl": "https://www.idescat.cat/pub/?id=e02&lang=es",
+      "kind": "experimental_official_body_statistics",
+      "decision": "context_only",
+      "supports": [
+        "mean_salary_context_for_catalan_municipalities_over_50000_inhabitants"
+      ],
+      "doesNotSupport": [
+        "spain_wide_city_coverage",
+        "arbitrary_exact_municipality_percentile"
+      ],
+      "reason": "Solo cubre Cataluna y municipios de mas de 50.000 habitantes, publica ingresos medios y se identifica como estadistica experimental y provisional, no como estadistica oficial consolidada."
+    }
+  ],
+  "dimensionDecision": {
+    "national": "enabled_after_microdata_validation",
+    "sex": "enabled_after_microdata_validation",
+    "age": "enabled_after_microdata_validation",
+    "sex_age": "enabled_only_for_cells_with_at_least_100_sample_records",
+    "autonomousCommunityResidence": "unavailable",
+    "cityResidence": "unavailable"
+  }
+}

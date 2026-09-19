@@ -5,3 +5,7 @@ dist/
 coverage/
 .sites-runtime/
 .DS_Store
+data/raw/*
+!data/raw/.gitkeep
+data/work/*
+!data/work/.gitkeep

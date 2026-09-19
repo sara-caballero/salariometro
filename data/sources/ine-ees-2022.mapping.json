@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "ine-ees-2022",
+  "status": "pending_archive_inspection",
+  "delimiter": null,
+  "columns": {
+    "annualGrossSalary": null,
+    "weight": null,
+    "sex": null,
+    "ageBand": null,
+    "workingTime": null
+  },
+  "values": {
+    "sex": {
+      "woman": [],
+      "man": []
+    },
+    "ageBand": {
+      "under_25": [],
+      "25_34": [],
+      "35_44": [],
+      "45_54": [],
+      "55_plus": []
+    },
+    "workingTime": {
+      "full_time": [],
+      "part_time": []
+    }
+  },
+  "numberFormat": {
+    "decimalSeparator": ".",
+    "thousandsSeparator": ""
+  },
+  "note": "Los nombres y codigos permanecen vacios deliberadamente. Se completan contra el diseno de registro incluido en el ZIP oficial; el normalizador rechaza este fichero mientras siga pendiente."
+}
