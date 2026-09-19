@@ -17,26 +17,23 @@
         <span>Salariometro</span>
       </a>
       <nav aria-label="Navegación principal">
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#metodologia">Metodología</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="./metodologia.html">Fuentes y metodología</a>
       </nav>
-      <span class="official-chip"><span aria-hidden="true"></span><b id="data-mode-label">Datos oficiales</b></span>
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">Salarios · España</p>
-          <h1 id="hero-title">Tu sueldo,<br><em>puesto en contexto.</em></h1>
+      <section class="tool-intro" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">Calculadora salarial</p>
+          <h1 id="hero-title">Compara tu salario.</h1>
+          <p>Introduce tu salario bruto anual para calcular qué porcentaje de personas asalariadas a jornada completa tiene un salario inferior.</p>
         </div>
-        <div class="hero-intro">
-          <p>Una cifra dice poco hasta que sabes con quién la comparas. Descubre tu posición salarial con una metodología abierta y fuentes oficiales.</p>
-          <ul aria-label="Principios de la herramienta">
-            <li>Sin registro</li>
-            <li>Cálculo privado</li>
-            <li>Fuente visible</li>
-          </ul>
-        </div>
+        <dl class="scope-summary">
+          <div><dt>Unidad</dt><dd>Euros brutos al año</dd></div>
+          <div><dt>Población</dt><dd>Asalariados a jornada completa</dd></div>
+          <div><dt>Ámbito inicial</dt><dd>España</dd></div>
+        </dl>
       </section>
 
       <div id="demo-banner" class="demo-banner" role="status" hidden>
@@ -47,10 +44,9 @@
       <section id="calculadora" class="calculator-shell" aria-label="Calculadora salarial">
         <div class="input-panel">
           <div class="panel-heading">
-            <span class="step-number" aria-hidden="true">01</span>
             <div>
-              <p class="overline">El punto de partida</p>
-              <h2>¿Cuánto ganas al año?</h2>
+              <p class="overline">Salario bruto anual</p>
+              <h2>Introduce tu salario</h2>
             </div>
           </div>
 
@@ -77,7 +73,7 @@
             <p id="salary-error" class="field-error" role="alert"></p>
             <p id="monthly-equivalent" class="monthly-equivalent" aria-live="polite">La equivalencia mensual aparecerá aquí.</p>
             <button class="primary-button" type="submit">
-              Ver mi posición
+              Calcular
               <span aria-hidden="true">→</span>
             </button>
           </form>
@@ -199,35 +195,22 @@
         </div>
       </section>
 
-      <section id="como-funciona" class="explanation-section">
+      <section id="metodologia" class="method-summary">
         <div>
-          <p class="eyebrow">Una lectura honesta</p>
-          <h2>No es una nota.<br>Es una posición.</h2>
-        </div>
-        <ol>
-          <li><span>01</span><div><h3>Escribes el bruto anual</h3><p>El total antes de impuestos, con extras y variable.</p></div></li>
-          <li><span>02</span><div><h3>Buscamos tu cohorte</h3><p>Siempre dentro de una distribución oficial compatible.</p></div></li>
-          <li><span>03</span><div><h3>Contamos a quienes quedan por debajo</h3><p>Usamos las ponderaciones de la fuente, no una media disfrazada de percentil.</p></div></li>
-        </ol>
-      </section>
-
-      <section id="metodologia" class="method-section">
-        <div>
-          <p class="eyebrow">Metodología abierta</p>
-          <h2>El número importa.<br>Su contexto también.</h2>
+          <p class="eyebrow">Método</p>
+          <h2>Cómo se calcula</h2>
         </div>
         <div class="method-copy">
-          <p>Salariometro calcula la proporción ponderada de la población de referencia con un salario estrictamente inferior al introducido. No deduce percentiles desde la media o la mediana.</p>
-          <a href="./docs/contrato-estadistico.md">Leer el contrato estadístico <span aria-hidden="true">↗</span></a>
-          <a href="./docs/fuentes-oficiales.md">Consultar las fuentes evaluadas <span aria-hidden="true">↗</span></a>
+          <p>El resultado es la proporción ponderada de la población de referencia con un salario estrictamente inferior al introducido. No se calcula a partir de la media o la mediana.</p>
+          <a href="./metodologia.html">Ver fuentes, cobertura y fórmula <span aria-hidden="true">→</span></a>
         </div>
       </section>
     </main>
 
     <footer>
-      <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Salariometro</a>
-      <p>Una herramienta independiente construida con datos públicos oficiales.</p>
-      <p>Los resultados son informativos y no sustituyen asesoramiento laboral o fiscal.</p>
+      <strong>Salariometro</strong>
+      <p>El cálculo se realiza en el navegador y no guarda los datos introducidos.</p>
+      <a href="./metodologia.html">Fuentes y metodología</a>
     </footer>
   </body>
 </html>

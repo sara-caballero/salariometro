@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fuentes, cobertura y método de cálculo de Salariometro.">
+    <title>Fuentes y metodología — Salariometro</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="Salariometro, calculadora">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Salariometro</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="./index.html#calculadora">Calculadora</a>
+        <a href="./metodologia.html" aria-current="page">Fuentes y metodología</a>
+      </nav>
+    </header>
+
+    <main id="contenido" class="method-page">
+      <header class="method-page-header">
+        <p class="eyebrow">Documentación</p>
+        <h1>Fuentes y metodología</h1>
+        <p>Definición del cálculo, población comparada, fuentes aceptadas y límites de los resultados.</p>
+        <dl>
+          <div><dt>Versión</dt><dd>0.1</dd></div>
+          <div><dt>Última revisión</dt><dd>19 de septiembre de 2026</dd></div>
+          <div><dt>Estado</dt><dd>Datos de producción pendientes de validación</dd></div>
+        </dl>
+      </header>
+
+      <section class="method-block" aria-labelledby="calculo-title">
+        <div class="method-index">01</div>
+        <div>
+          <h2 id="calculo-title">Qué calcula</h2>
+          <p>Salariometro calcula qué proporción ponderada de la población de referencia tiene un salario bruto anual estrictamente inferior al salario introducido.</p>
+          <div class="formula" role="img" aria-label="Percentil igual a cien por la suma de ponderaciones de salarios inferiores, dividida entre la suma de todas las ponderaciones">
+            <span>percentil(s)</span>
+            <strong>=</strong>
+            <span>100 × ponderación de salarios &lt; s<br><i>ponderación total</i></span>
+          </div>
+          <ul>
+            <li>Los salarios exactamente iguales no cuentan como inferiores.</li>
+            <li>Se utilizan las ponderaciones oficiales, no el número simple de registros.</li>
+            <li>La precisión se conserva durante el cálculo y se redondea al entero más cercano solo al mostrarla.</li>
+            <li>La media o la mediana no se transforman en percentiles.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="method-block" aria-labelledby="poblacion-title">
+        <div class="method-index">02</div>
+        <div>
+          <h2 id="poblacion-title">Población y salario</h2>
+          <div class="definition-grid">
+            <article><h3>Población</h3><p>Personas asalariadas a jornada completa incluidas en la cobertura de la fuente.</p></article>
+            <article><h3>Unidad</h3><p>Euros brutos anuales por trabajador.</p></article>
+            <article><h3>Incluye</h3><p>Salario fijo, pagas extraordinarias, bonus y retribución variable según la definición de la EES.</p></article>
+            <article><h3>No incluye</h3><p>Autónomos, jornada parcial, cotizaciones empresariales ni reembolsos de gastos.</p></article>
+          </div>
+          <p class="method-note">La EES no cubre todos los sectores por igual. Entre sus exclusiones están agricultura, ganadería, silvicultura y pesca, hogares como empleadores y organismos extraterritoriales. La cobertura de la Administración pública tampoco es completa.</p>
+        </div>
+      </section>
+
+      <section class="method-block" aria-labelledby="principal-title">
+        <div class="method-index">03</div>
+        <div>
+          <h2 id="principal-title">Fuente principal</h2>
+          <article class="source-primary">
+            <div>
+              <p class="source-type">Microdatos oficiales anonimizados</p>
+              <h3>Encuesta de Estructura Salarial 2022</h3>
+              <p>Instituto Nacional de Estadística (INE). Es la fuente seleccionada porque contiene salario bruto anual, ponderación, sexo, edad y tipo de jornada en un mismo fichero.</p>
+            </div>
+            <dl>
+              <div><dt>Periodo</dt><dd>2022</dd></div>
+              <div><dt>Publicación</dt><dd>23 de septiembre de 2024</dd></div>
+              <div><dt>Uso</dt><dd>Percentiles de España, sexo, edad y cruces sexo–edad fiables</dd></div>
+              <div><dt>Estado</dt><dd>Pendiente de validación y huella SHA-256</dd></div>
+            </dl>
+          </article>
+          <div class="official-links" aria-label="Enlaces oficiales de la fuente principal">
+            <a href="https://www.ine.es/dyngs/INEbase/operacion.htm?c=Estadistica_C&amp;cid=1254736177025&amp;idp=1254735976596&amp;menu=resultados">Resultados y microdatos del INE <span aria-hidden="true">↗</span></a>
+            <a href="https://www.ine.es/metodologia/t22/meto_ees22.pdf">Metodología oficial de la EES 2022 <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="method-block" aria-labelledby="cobertura-title">
+        <div class="method-index">04</div>
+        <div>
+          <h2 id="cobertura-title">Comparaciones disponibles</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Comparación</th><th>Estado</th><th>Criterio</th></tr></thead>
+              <tbody>
+                <tr><td>España</td><td><span class="status pending">Pendiente</span></td><td>Disponible tras validar los microdatos EES 2022.</td></tr>
+                <tr><td>Sexo</td><td><span class="status pending">Pendiente</span></td><td>Misma fuente, población y periodo.</td></tr>
+                <tr><td>Edad</td><td><span class="status pending">Pendiente</span></td><td>Edad exacta asignada al tramo oficial.</td></tr>
+                <tr><td>Sexo + edad</td><td><span class="status conditional">Condicional</span></td><td>Solo celdas conjuntas con al menos 100 registros.</td></tr>
+                <tr><td>Comunidad de residencia</td><td><span class="status unavailable">No disponible</span></td><td>La geografía EES identifica el centro de cotización, no la residencia.</td></tr>
+                <tr><td>Ciudad de residencia</td><td><span class="status unavailable">No disponible</span></td><td>No se ha localizado una distribución nacional compatible.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="method-block" aria-labelledby="otras-title">
+        <div class="method-index">05</div>
+        <div>
+          <h2 id="otras-title">Otras fuentes evaluadas</h2>
+          <div class="source-list">
+            <article>
+              <h3>EAES 2024 · INE</h3>
+              <p>Referencia anual más reciente para contrastar magnitudes. Sus tablas agregadas no permiten calcular todos los percentiles exactos por salario y subgrupo.</p>
+              <a href="https://www.ine.es/dyngs/Prensa/EAES2024.htm">Fuente oficial <span aria-hidden="true">↗</span></a>
+            </article>
+            <article>
+              <h3>Deciles salariales EPA 2024 · INE</h3>
+              <p>Mide el salario bruto mensual del empleo principal y publica deciles o bandas. No es compatible con el contrato anual exacto.</p>
+              <a href="https://www.ine.es/dyngs/Prensa/dsEPA2024.htm">Fuente oficial <span aria-hidden="true">↗</span></a>
+            </article>
+            <article>
+              <h3>Mercado de Trabajo y Pensiones 2024 · AEAT</h3>
+              <p>Fuente administrativa amplia, pero sus tablas no aíslan de forma compatible la jornada completa y mezclan duraciones y pagadores.</p>
+              <a href="https://sede.agenciatributaria.gob.es/Sede/estadisticas/mercado-trabajo-pensiones-fuentes-tributarias.html">Fuente oficial <span aria-hidden="true">↗</span></a>
+            </article>
+            <article>
+              <h3>Salarios territoriales 2024 · Idescat</h3>
+              <p>Publica medias para Cataluña y municipios de más de 50.000 habitantes. Es experimental y no proporciona la distribución nacional requerida.</p>
+              <a href="https://www.idescat.cat/pub/?id=e02&amp;lang=es">Fuente oficial <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="method-block" aria-labelledby="calidad-title">
+        <div class="method-index">06</div>
+        <div>
+          <h2 id="calidad-title">Reglas de publicación</h2>
+          <ul>
+            <li>No se combinan tablas marginales para fabricar una cohorte conjunta.</li>
+            <li>Las celdas con menos de 100 observaciones muestrales se suprimen.</li>
+            <li>Las celdas de 100 a 499 observaciones se marcan con cautela.</li>
+            <li>Los datos ausentes o suprimidos nunca se convierten en cero.</li>
+            <li>Cada versión debe conservar URL, periodo, transformación y huella SHA-256 del fichero original.</li>
+            <li>Si la distribución no es compatible, la interfaz muestra que no hay datos en vez de estimar una cifra.</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="method-back">
+        <a href="./index.html#calculadora">← Volver a la calculadora</a>
+      </div>
+    </main>
+
+    <footer>
+      <strong>Salariometro</strong>
+      <p>Documentación pública de fuentes, cobertura y cálculo.</p>
+      <a href="./index.html#calculadora">Calculadora</a>
+    </footer>
+  </body>
+</html>

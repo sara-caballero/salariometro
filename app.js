@@ -22,7 +22,6 @@ const elements = {
   age: document.querySelector("#age"),
   region: document.querySelector("#region"),
   city: document.querySelector("#city"),
-  dataModeLabel: document.querySelector("#data-mode-label"),
   demoBanner: document.querySelector("#demo-banner"),
   resultPanel: document.querySelector("#result-panel"),
   loading: document.querySelector("#result-loading"),
@@ -68,7 +67,6 @@ function buildDemoDataset() {
 async function loadDataset() {
   if (demoMode) {
     elements.demoBanner.hidden = false;
-    elements.dataModeLabel.textContent = "Modo demostración";
     return buildDemoDataset();
   }
 
