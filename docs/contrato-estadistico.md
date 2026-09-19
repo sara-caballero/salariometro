@@ -56,7 +56,7 @@ La poblacion inicial debe cumplir simultaneamente:
 
 Quedan fuera autonomos, ocupados no asalariados y personas a jornada parcial.
 
-Las exclusiones adicionales de la fuente —por ejemplo, determinados sectores, tamanos de empresa o colectivos— deben aparecer en la nota metodologica del resultado.
+Las exclusiones adicionales de la fuente, por ejemplo determinados sectores, tamanos de empresa o colectivos, deben aparecer en la nota metodologica del resultado.
 
 ## 5. Concepto salarial
 
@@ -160,4 +160,3 @@ El inventario de fuentes debe resolver antes de implementar cada tarjeta:
 - que conceptos salariales concretos incluye cada operacion estadistica;
 - que ciudades disponen realmente de datos;
 - que comparaciones combinadas pueden calcularse sin modelado ni interpolacion.
-
