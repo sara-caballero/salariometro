@@ -14,6 +14,8 @@ La pagina debe permitir introducir un salario y obtener una comparacion estadist
 4. Resultado nacional y comparaciones opcionales.
 5. Resumen del metodo con enlace a una unica pagina publica de documentacion.
 
+El formulario solo acepta el salario bruto anual. Debajo del campo se muestra una equivalencia informativa en salario bruto mensual calculada sobre 12 pagas.
+
 ## Textos principales
 
 - Titulo: `Compara tu salario.`

@@ -95,7 +95,7 @@ function updateMonthlyEquivalent() {
     elements.monthly.textContent = "La equivalencia mensual aparecerá aquí.";
     return;
   }
-  elements.monthly.textContent = `${euro.format(salary)} al año equivalen a ${euroMonthly.format(salary / 12)} al mes en 12 pagas.`;
+  elements.monthly.textContent = `${euro.format(salary)} brutos al año equivalen a ${euroMonthly.format(salary / 12)} brutos al mes en 12 pagas.`;
 }
 
 function renderDots(percent) {
