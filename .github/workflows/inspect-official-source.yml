@@ -52,6 +52,16 @@ jobs:
             esac
           done < <(find extracted -type f | sort)
 
+      - name: Print definitions used by Salariometro
+        shell: bash
+        run: |
+          set -euo pipefail
+          jq '.. | objects | select(tostring | test("NUTS1|ANOS2|SEXO|TIPOJOR|RETRINOIN|RETRIIN|GEXTRA|VESPNOIN|VESPIN|FACTOTAL"; "i"))' \
+            extracted/dr_EES_2022.json
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq antiword
+          antiword "extracted/EES22 Obtención de los resultados publicados a partir de los microdatos web.doc"
+
       - name: Preserve official archive
         uses: actions/upload-artifact@v4
         with:
