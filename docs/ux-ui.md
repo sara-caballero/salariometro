@@ -15,7 +15,7 @@ El texto principal es `Ganas más que el X % de...`. El resultado nacional siemp
 ## Precisión del lenguaje
 
 - Se indica siempre jornada completa.
-- El territorio se denomina macroregión del centro de trabajo.
+- La pregunta territorial es `¿Dónde está tu centro de trabajo?` y las siete opciones se describen como zonas del INE.
 - El periodo y la fuente aparecen junto al resultado.
 - Una muestra pequeña se marca con cautela.
 - Un dato ausente no se convierte en cero ni se reemplaza por otra geografía.

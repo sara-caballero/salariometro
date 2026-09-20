@@ -118,7 +118,7 @@ function comparisonRequests(salary) {
   }
   if (elements.region.value) {
     comparisons.push({
-      label: "Por territorio laboral",
+      label: "Por zona de trabajo",
       request: {
         salary,
         comparison: { kind: "workplace_region", code: elements.region.value }

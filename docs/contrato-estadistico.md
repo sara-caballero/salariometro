@@ -42,7 +42,7 @@ La media es ponderada. La mediana es el primer salario cuya ponderación acumula
 - Sexo.
 - Tramo de edad oficial del microdato.
 - Sexo y edad observados conjuntamente.
-- Región NUTS1 del centro de trabajo.
+- Zona NUTS1 del centro de trabajo.
 
 Una cohorte con menos de 100 registros se suprime. De 100 a 499 se marca con cautela. Nunca se crean cruces a partir de tablas marginales.
 

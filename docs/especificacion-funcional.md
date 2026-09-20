@@ -9,7 +9,7 @@ Salariometro sitúa un salario bruto anual dentro de la distribución oficial de
 - Salario bruto anual, obligatorio.
 - Sexo, opcional: mujer, hombre o no indicado.
 - Edad, opcional: entero entre 16 y 120 años.
-- Macroregión NUTS1 del centro de trabajo, opcional.
+- Zona NUTS1 del centro de trabajo, opcional.
 
 La equivalencia mensual sobre 12 pagas es informativa. No existe modo de entrada mensual.
 
@@ -17,7 +17,7 @@ La equivalencia mensual sobre 12 pagas es informativa. No existe modo de entrada
 
 El resultado principal usa la frase `Ganas más que el X % de los asalariados a jornada completa en España.` También muestra media y mediana del grupo nacional.
 
-Los filtros opcionales producen tarjetas separadas para sexo, edad, sexo y edad, y macroregión laboral. Cada tarjeta contiene porcentaje, media y mediana. No se combinan fuentes o marginales independientes.
+Los filtros opcionales producen tarjetas separadas para sexo, edad, sexo y edad, y zona de trabajo. Cada tarjeta contiene porcentaje, media y mediana. No se combinan fuentes o marginales independientes.
 
 ## Alcance territorial
 

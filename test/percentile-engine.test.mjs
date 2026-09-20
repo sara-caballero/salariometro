@@ -109,7 +109,7 @@ test("solo usa cruces de sexo y edad observados", () => {
   assert.equal(absent.reason, "cohort_unavailable");
 });
 
-test("compara por macroregion del centro de trabajo", () => {
+test("compara por zona del centro de trabajo", () => {
   const result = compareSalary(dataset, {
     salary: 15000,
     comparison: { kind: "workplace_region", code: "1" }

@@ -6,7 +6,7 @@ La versión 1.0 incluye:
 
 - percentil nacional ponderado;
 - comparaciones por sexo, edad, sexo y edad;
-- comparación por las siete macroregiones NUTS1 del centro de trabajo;
+- comparación por las siete zonas NUTS1 del centro de trabajo;
 - media y mediana de cada grupo;
 - cálculo íntegro en el navegador, sin enviar ni guardar los datos introducidos;
 - trazabilidad de la fuente, el periodo y las transformaciones aplicadas;

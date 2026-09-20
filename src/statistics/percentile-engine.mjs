@@ -57,7 +57,7 @@ function resolveComparison(comparison) {
   if (comparison.kind === "workplace_region") {
     const region = getWorkplaceRegion(comparison.code);
     if (!region) {
-      return { status: "invalid_input", reason: "invalid_workplace_region", message: "La macroregión no es válida." };
+      return { status: "invalid_input", reason: "invalid_workplace_region", message: "La zona de trabajo no es válida." };
     }
     return {
       id: `workplace-region:${region.code}`,
