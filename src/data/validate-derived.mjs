@@ -124,4 +124,3 @@ export function assertValidDistributionSet(dataset, options = {}) {
     throw new Error(`Distribucion derivada invalida:\n- ${errors.join("\n- ")}`);
   }
 }
-

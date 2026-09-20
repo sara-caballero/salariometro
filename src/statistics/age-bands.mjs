@@ -18,4 +18,3 @@ export function ageToBand(age) {
 export function getAgeBand(id) {
   return AGE_BANDS.find((band) => band.id === id) ?? null;
 }
-

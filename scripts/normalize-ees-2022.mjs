@@ -114,4 +114,3 @@ for (let index = 0; index < rows.length; index += 1) {
 await mkdir(path.dirname(output), { recursive: true });
 await writeFile(output, `${outputLines.join("\n")}\n`, { flag: "wx" });
 console.log(`Normalizados ${outputLines.length} registros en ${output}.`);
-

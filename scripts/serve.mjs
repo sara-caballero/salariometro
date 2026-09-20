@@ -42,5 +42,5 @@ const server = createServer(async (request, response) => {
 
 server.listen(port, "127.0.0.1", () => {
   console.log(`Salariometro disponible en http://127.0.0.1:${port}`);
-  console.log(`Vista de diseño: http://127.0.0.1:${port}/?demo=1`);
+  console.log(`Salariometro: http://127.0.0.1:${port}/`);
 });

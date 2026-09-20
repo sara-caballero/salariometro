@@ -4,7 +4,7 @@
   "productContract": {
     "measure": "annual_gross_salary_eur",
     "population": "employees_full_time",
-    "geographyInput": "residence",
+    "geographyInput": "workplace_nuts1",
     "statistic": "weighted_empirical_percentile_strictly_below"
   },
   "sources": [
@@ -23,7 +23,8 @@
         "national_percentile",
         "sex_percentile",
         "age_band_percentile",
-        "sex_age_joint_percentile_when_reliable"
+        "sex_age_joint_percentile_when_reliable",
+        "workplace_nuts1_percentile"
       ],
       "doesNotSupport": [
         "residence_autonomous_community_percentile",
@@ -114,10 +115,11 @@
     }
   ],
   "dimensionDecision": {
-    "national": "enabled_after_microdata_validation",
-    "sex": "enabled_after_microdata_validation",
-    "age": "enabled_after_microdata_validation",
+    "national": "enabled",
+    "sex": "enabled",
+    "age": "enabled",
     "sex_age": "enabled_only_for_cells_with_at_least_100_sample_records",
+    "workplaceRegionNuts1": "enabled",
     "autonomousCommunityResidence": "unavailable",
     "cityResidence": "unavailable"
   }

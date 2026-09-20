@@ -31,4 +31,3 @@
     { "cohortId": "sex:man", "statistic": "percentiles.90", "expected": 54202.46, "tolerance": 1.00 }
   ]
 }
-

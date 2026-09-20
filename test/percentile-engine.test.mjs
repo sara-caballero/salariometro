@@ -139,4 +139,3 @@ test("el builder suprime cohortes pequenas y excluye jornada parcial", () => {
   assert.ok(strict.cohorts.some((cohort) => cohort.id === "national"));
   assert.ok(strict.suppressedCohorts.some((cohort) => cohort.id === "sex:woman"));
 });
-

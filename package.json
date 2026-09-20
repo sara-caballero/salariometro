@@ -17,4 +17,3 @@
     "data:validate": "node scripts/validate-derived.mjs"
   }
 }
-

@@ -27,9 +27,9 @@
         <h1>Fuentes y metodología</h1>
         <p>Definición del cálculo, población comparada, fuentes aceptadas y límites de los resultados.</p>
         <dl>
-          <div><dt>Versión</dt><dd>0.1</dd></div>
-          <div><dt>Última revisión</dt><dd>19 de septiembre de 2026</dd></div>
-          <div><dt>Estado</dt><dd>Datos de producción pendientes de validación</dd></div>
+          <div><dt>Versión</dt><dd>1.0</dd></div>
+          <div><dt>Última revisión</dt><dd>20 de septiembre de 2026</dd></div>
+          <div><dt>Estado</dt><dd>Datos de producción validados</dd></div>
         </dl>
       </header>
 
@@ -46,7 +46,8 @@
           <ul>
             <li>Los salarios exactamente iguales no cuentan como inferiores.</li>
             <li>Se utilizan las ponderaciones oficiales, no el número simple de registros.</li>
-            <li>La precisión se conserva durante el cálculo y se redondea al entero más cercano solo al mostrarla.</li>
+            <li>El porcentaje se calcula con precisión completa y se redondea al entero más cercano para mostrarlo.</li>
+            <li>El fichero del navegador conserva sin pérdida cada cambio posible del entero publicado.</li>
             <li>La media o la mediana no se transforman en percentiles.</li>
           </ul>
         </div>
@@ -59,9 +60,10 @@
           <div class="definition-grid">
             <article><h3>Población</h3><p>Personas asalariadas a jornada completa incluidas en la cobertura de la fuente.</p></article>
             <article><h3>Unidad</h3><p>Euros brutos anuales por trabajador.</p></article>
-            <article><h3>Incluye</h3><p>Salario fijo, pagas extraordinarias, bonus y retribución variable según la definición de la EES.</p></article>
+            <article><h3>Incluye</h3><p>Retribución en dinero y en especie, con pagas extraordinarias, según la definición de la EES.</p></article>
             <article><h3>No incluye</h3><p>Autónomos, jornada parcial, cotizaciones empresariales ni reembolsos de gastos.</p></article>
           </div>
+          <p>La ganancia se anualiza con la fórmula incluida por el INE en el propio paquete de microdatos: <code>SALANUAL = (365 / DIASANO) × (RETRINOIN + RETRIIN + VESPNOIN + VESPIN)</code>. Los días remunerados se calculan con la duración de la relación laboral y los periodos especiales definidos por la encuesta.</p>
           <p class="method-note">La EES no cubre todos los sectores por igual. Entre sus exclusiones están agricultura, ganadería, silvicultura y pesca, hogares como empleadores y organismos extraterritoriales. La cobertura de la Administración pública tampoco es completa.</p>
         </div>
       </section>
@@ -79,14 +81,16 @@
             <dl>
               <div><dt>Periodo</dt><dd>2022</dd></div>
               <div><dt>Publicación</dt><dd>23 de septiembre de 2024</dd></div>
-              <div><dt>Uso</dt><dd>Percentiles de España, sexo, edad y cruces sexo–edad fiables</dd></div>
-              <div><dt>Estado</dt><dd>Pendiente de validación y huella SHA-256</dd></div>
+              <div><dt>Uso</dt><dd>España, sexo, edad, sexo y edad, y región laboral NUTS1</dd></div>
+              <div><dt>Estado</dt><dd>Validado y fijado por SHA-256</dd></div>
             </dl>
           </article>
           <div class="official-links" aria-label="Enlaces oficiales de la fuente principal">
             <a href="https://www.ine.es/dyngs/INEbase/operacion.htm?c=Estadistica_C&amp;cid=1254736177025&amp;idp=1254735976596&amp;menu=resultados">Resultados y microdatos del INE <span aria-hidden="true">↗</span></a>
             <a href="https://www.ine.es/metodologia/t22/meto_ees22.pdf">Metodología oficial de la EES 2022 <span aria-hidden="true">↗</span></a>
+            <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=36832">Tabla oficial usada para validar <span aria-hidden="true">↗</span></a>
           </div>
+          <p class="method-note">Fichero oficial: 77.468.637 bytes. SHA-256: <code>c52b716c156dbbe1a64026140cf8e303db4bde414437f4d1737f56fcaf609e10</code>.</p>
         </div>
       </section>
 
@@ -98,12 +102,12 @@
             <table>
               <thead><tr><th>Comparación</th><th>Estado</th><th>Criterio</th></tr></thead>
               <tbody>
-                <tr><td>España</td><td><span class="status pending">Pendiente</span></td><td>Disponible tras validar los microdatos EES 2022.</td></tr>
-                <tr><td>Sexo</td><td><span class="status pending">Pendiente</span></td><td>Misma fuente, población y periodo.</td></tr>
-                <tr><td>Edad</td><td><span class="status pending">Pendiente</span></td><td>Edad exacta asignada al tramo oficial.</td></tr>
-                <tr><td>Sexo + edad</td><td><span class="status conditional">Condicional</span></td><td>Solo celdas conjuntas con al menos 100 registros.</td></tr>
-                <tr><td>Comunidad de residencia</td><td><span class="status unavailable">No disponible</span></td><td>La geografía EES identifica el centro de cotización, no la residencia.</td></tr>
-                <tr><td>Ciudad de residencia</td><td><span class="status unavailable">No disponible</span></td><td>No se ha localizado una distribución nacional compatible.</td></tr>
+                <tr><td>España</td><td><span class="status available">Disponible</span></td><td>Jornada completa y ponderación oficial.</td></tr>
+                <tr><td>Sexo</td><td><span class="status available">Disponible</span></td><td>Misma fuente, población y periodo.</td></tr>
+                <tr><td>Edad</td><td><span class="status available">Disponible</span></td><td>La edad se asigna a los seis tramos del microdato.</td></tr>
+                <tr><td>Sexo + edad</td><td><span class="status available">Disponible</span></td><td>Cruce calculado dentro del mismo microdato y sujeto al mínimo muestral.</td></tr>
+                <tr><td>Macroregión laboral</td><td><span class="status available">Disponible</span></td><td>Siete regiones NUTS1 del centro de trabajo.</td></tr>
+                <tr><td>Comunidad o ciudad de residencia</td><td><span class="status unavailable">No disponible</span></td><td>La EES no identifica el domicilio con ese detalle.</td></tr>
               </tbody>
             </table>
           </div>
@@ -149,6 +153,7 @@
             <li>Las celdas de 100 a 499 observaciones se marcan con cautela.</li>
             <li>Los datos ausentes o suprimidos nunca se convierten en cero.</li>
             <li>Cada versión debe conservar URL, periodo, transformación y huella SHA-256 del fichero original.</li>
+            <li>La media y los percentiles 10, 25, 50, 75 y 90 de España, mujeres y hombres se contrastan con la tabla 36832 del INE.</li>
             <li>Si la distribución no es compatible, la interfaz muestra que no hay datos en vez de estimar una cifra.</li>
           </ul>
         </div>

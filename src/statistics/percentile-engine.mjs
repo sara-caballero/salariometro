@@ -128,4 +128,3 @@ export function compareSalary(dataset, request, options = {}) {
     }
   };
 }
-

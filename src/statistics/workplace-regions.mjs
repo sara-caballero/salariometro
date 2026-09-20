@@ -11,4 +11,3 @@ export const WORKPLACE_REGIONS = Object.freeze([
 export function getWorkplaceRegion(code) {
   return WORKPLACE_REGIONS.find((region) => region.code === String(code)) ?? null;
 }
-

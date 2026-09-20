@@ -47,4 +47,3 @@ console.log(`Validacion oficial superada: ${results.length} controles.`);
 for (const result of results) {
   console.log(`${result.cohortId} ${result.statistic}: ${result.actual.toFixed(4)}; diferencia ${result.absoluteDifference.toFixed(4)} euros.`);
 }
-

@@ -1524,6 +1524,7 @@ footer p:last-child {
 
 .status.pending { color: #805d13; }
 .status.conditional { color: var(--forest); }
+.status.available { color: var(--forest); }
 .status.unavailable { color: var(--error); }
 
 .source-list {
@@ -1582,4 +1583,3 @@ footer p:last-child {
     text-align: left !important;
   }
 }
-

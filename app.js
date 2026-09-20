@@ -133,7 +133,7 @@ function statisticRows(result) {
     const term = document.createElement("dt");
     const description = document.createElement("dd");
     term.textContent = label;
-    description.textContent = euro.format(value);
+    description.textContent = euroPrecise.format(value);
     row.append(term, description);
     list.append(row);
   }
@@ -244,4 +244,3 @@ for (const control of [
 
 dataset = await loadDataset();
 showState("empty");
-

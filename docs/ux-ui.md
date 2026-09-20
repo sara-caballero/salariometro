@@ -1,57 +1,25 @@
-# Salariometro: interfaz funcional
+# Interfaz funcional
 
-Estado: primera version implementada.
+La página es una herramienta, no una página comercial.
 
-## Objetivo
+## Flujo
 
-La pagina debe permitir introducir un salario y obtener una comparacion estadistica con el minimo contenido adicional necesario. No es una pagina comercial y no utiliza reclamos, beneficios promocionales ni llamadas a registro.
+1. Introducir salario bruto anual.
+2. Ver su equivalencia bruta mensual en 12 pagas.
+3. Elegir opcionalmente sexo, edad y región laboral.
+4. Calcular.
+5. Leer percentil, media, mediana, comparaciones y fuente.
 
-## Estructura
+El texto principal es `Ganas más que el X % de...`. El resultado nacional siempre aparece primero y los filtros no sustituyen ni alteran esa referencia.
 
-1. Cabecera con acceso a la calculadora y a `Fuentes y metodologia`.
-2. Descripcion breve del calculo y resumen de unidad, poblacion y ambito.
-3. Calculadora de salario bruto anual.
-4. Resultado nacional y comparaciones opcionales.
-5. Resumen del metodo con enlace a una unica pagina publica de documentacion.
+## Precisión del lenguaje
 
-El formulario solo acepta el salario bruto anual. Debajo del campo se muestra una equivalencia informativa en salario bruto mensual calculada sobre 12 pagas.
+- Se indica siempre jornada completa.
+- El territorio se denomina macroregión del centro de trabajo.
+- El periodo y la fuente aparecen junto al resultado.
+- Una muestra pequeña se marca con cautela.
+- Un dato ausente no se convierte en cero ni se reemplaza por otra geografía.
 
-## Textos principales
+## Privacidad y accesibilidad
 
-- Titulo: `Compara tu salario.`
-- Descripcion: `Introduce tu salario bruto anual para calcular que porcentaje de personas asalariadas a jornada completa tiene un salario inferior.`
-- Campo: `Tu salario bruto anual`.
-- Ayuda: `Incluye pagas extra, bonus y variable de todo el año.`
-- Accion: `Calcular`.
-- Resultado: `Ganas mas que el X % de los asalariados a jornada completa en España.`
-- Sin fuente validada: `El calculo aun no esta publicado.`
-- Ciudad: `No hay datos disponibles para esta ciudad.`
-
-## Estados
-
-- **Inicial:** solicita el salario sin mostrar cifras.
-- **Calculado:** muestra percentil, frase completa, matriz visual, calidad y procedencia.
-- **Fuente pendiente:** bloquea la cifra hasta completar la validacion.
-- **Comparacion no disponible:** explica el motivo sin sustituir territorios o poblaciones.
-- **Demostracion:** solo mediante `?demo=1`, con avisos persistentes de datos ficticios.
-- **Error de entrada:** aparece junto al campo y conserva el valor introducido.
-
-## Documentacion publica
-
-`metodologia.html` concentra en una unica pagina:
-
-- formula y regla para empates;
-- poblacion, unidad y exclusiones;
-- fuente primaria;
-- cobertura de cada comparacion;
-- fuentes alternativas evaluadas;
-- umbrales y reglas de publicacion.
-
-Los documentos Markdown permanecen como documentacion interna del repositorio, pero no se enlazan desde la interfaz publica.
-
-## Accesibilidad y privacidad
-
-- Etiquetas visibles, foco de teclado, regiones `aria-live` y contraste suficiente.
-- La matriz de puntos tiene una descripcion textual equivalente.
-- Diseño adaptable a movil y escritorio.
-- Salario y datos opcionales procesados exclusivamente en el navegador.
+Los cálculos se ejecutan en el navegador. No se envían ni guardan entradas. La interfaz usa etiquetas visibles, foco de teclado, mensajes en regiones accesibles y una descripción textual equivalente para la matriz de puntos.

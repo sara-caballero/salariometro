@@ -40,4 +40,3 @@ test("rechaza formulas incompletas o sin dias remunerados", () => {
     temporaryDisabilityDays: 0
   }));
 });
-

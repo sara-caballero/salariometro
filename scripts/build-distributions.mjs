@@ -43,4 +43,3 @@ assertValidDistributionSet(dataset);
 await mkdir(path.dirname(outputPath), { recursive: true });
 await writeFile(outputPath, `${JSON.stringify(dataset)}\n`);
 console.log(`Distribuciones creadas en ${outputPath}. Estado: review_required.`);
-

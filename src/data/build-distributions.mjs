@@ -201,4 +201,3 @@ export function buildDistributionSet(records, options = {}) {
     suppressedCohorts
   };
 }
-
