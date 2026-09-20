@@ -175,7 +175,6 @@ export function buildDistributionSet(records, options = {}) {
       dataset: "Encuesta de Estructura Salarial 2022, microdatos anonimizados",
       referenceYear: options.referenceYear ?? 2022,
       publishedAt: "2024-09-23",
-      rawSha256: options.rawSha256 ?? null,
       transformationVersion: options.transformationVersion ?? "1.0.0",
       derivationResponsibility: "Elaboracion propia de Salariometro a partir de microdatos del INE"
     },

@@ -47,6 +47,7 @@
             <li>Los salarios exactamente iguales no cuentan como inferiores.</li>
             <li>Se utilizan las ponderaciones oficiales, no el número simple de registros.</li>
             <li>El porcentaje se calcula con precisión completa y se redondea al entero más cercano para mostrarlo.</li>
+            <li>Cuando el redondeo alcanzaría el 100 %, se muestra «más del 99 %» para evitar una afirmación absoluta.</li>
             <li>El fichero del navegador conserva sin pérdida cada cambio posible del entero publicado.</li>
             <li>La media o la mediana no se transforman en percentiles.</li>
           </ul>
@@ -82,7 +83,7 @@
               <div><dt>Periodo</dt><dd>2022</dd></div>
               <div><dt>Publicación</dt><dd>23 de septiembre de 2024</dd></div>
               <div><dt>Uso</dt><dd>España, sexo, edad, sexo y edad, y región laboral NUTS1</dd></div>
-              <div><dt>Estado</dt><dd>Validado y fijado por SHA-256</dd></div>
+              <div><dt>Estado</dt><dd>Validado contra la fuente oficial</dd></div>
             </dl>
           </article>
           <div class="official-links" aria-label="Enlaces oficiales de la fuente principal">
@@ -90,7 +91,6 @@
             <a href="https://www.ine.es/metodologia/t22/meto_ees22.pdf">Metodología oficial de la EES 2022 <span aria-hidden="true">↗</span></a>
             <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=36832">Tabla oficial usada para validar <span aria-hidden="true">↗</span></a>
           </div>
-          <p class="method-note">Fichero oficial: 77.468.637 bytes. SHA-256: <code>c52b716c156dbbe1a64026140cf8e303db4bde414437f4d1737f56fcaf609e10</code>.</p>
         </div>
       </section>
 
@@ -152,7 +152,7 @@
             <li>Las celdas con menos de 100 observaciones muestrales se suprimen.</li>
             <li>Las celdas de 100 a 499 observaciones se marcan con cautela.</li>
             <li>Los datos ausentes o suprimidos nunca se convierten en cero.</li>
-            <li>Cada versión debe conservar URL, periodo, transformación y huella SHA-256 del fichero original.</li>
+            <li>Cada versión debe conservar la fuente, el periodo y las transformaciones aplicadas.</li>
             <li>La media y los percentiles 10, 25, 50, 75 y 90 de España, mujeres y hombres se contrastan con la tabla 36832 del INE.</li>
             <li>Si la distribución no es compatible, la interfaz muestra que no hay datos en vez de estimar una cifra.</li>
           </ul>

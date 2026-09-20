@@ -46,11 +46,13 @@ La media es ponderada. La mediana es el primer salario cuya ponderación acumula
 
 Una cohorte con menos de 100 registros se suprime. De 100 a 499 se marca con cautela. Nunca se crean cruces a partir de tablas marginales.
 
+Los resultados que redondearían al 100 % se presentan como «más del 99 %» para no convertir una estimación muestral en una afirmación absoluta.
+
 ## Validación
 
 La publicación exige:
 
-1. URL, tamaño y SHA-256 del ZIP oficial fijados.
+1. Fuente, periodo y versión de los datos fijados.
 2. Esquema y códigos contrastados con el diseño de registro y los formatos SAS.
 3. Fórmula contrastada con las instrucciones incluidas por el INE.
 4. Pruebas de empates, límites, redondeo, ponderación y cohortes.

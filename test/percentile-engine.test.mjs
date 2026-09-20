@@ -72,6 +72,18 @@ test("devuelve el texto de España y sus estadisticos", () => {
   assert.equal(result.statistics.median, 20000);
 });
 
+test("expresa el extremo superior como mas del 99 por ciento", () => {
+  const result = compareSalary(dataset, {
+    salary: 100000,
+    comparison: { kind: "national" }
+  }, { allowSynthetic: true });
+  assert.equal(result.displayPercent, 100);
+  assert.equal(
+    result.statement,
+    "Tu salario supera al de más del 99 % de los asalariados a jornada completa en España."
+  );
+});
+
 test("mapea la edad al tramo oficial", () => {
   const result = compareSalary(dataset, {
     salary: 20000,
@@ -120,8 +132,7 @@ test("rechaza entradas invalidas y datos no validados", () => {
 
   const reviewDataset = {
     ...dataset,
-    publicationStatus: "review_required",
-    provenance: { ...dataset.provenance, rawSha256: "a".repeat(64) }
+    publicationStatus: "review_required"
   };
   const pending = compareSalary(reviewDataset, { salary: 30000 });
   assert.equal(pending.status, "unavailable");

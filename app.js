@@ -85,8 +85,14 @@ function renderDots(percent) {
   elements.dots.replaceChildren(fragment);
   elements.dots.setAttribute(
     "aria-label",
-    `${safePercent} de los 100 puntos representan salarios estrictamente inferiores.`
+    percent === 100
+      ? "Los 100 puntos representan un resultado superior al 99 % tras el redondeo."
+      : `${safePercent} de los 100 puntos representan salarios estrictamente inferiores.`
   );
+}
+
+function percentileCount(percent) {
+  return percent === 100 ? "Más de 99 de 100" : `${percent} de 100`;
 }
 
 function selectedSex() {
@@ -149,7 +155,7 @@ function addComparisonCard(label, result) {
   const detail = document.createElement("p");
 
   if (result.status === "ok") {
-    value.textContent = `${result.displayPercent} de 100`;
+    value.textContent = percentileCount(result.displayPercent);
     detail.textContent = result.statement;
     card.append(heading, value, detail, statisticRows(result));
   } else {
@@ -161,7 +167,7 @@ function addComparisonCard(label, result) {
 }
 
 function renderReady(salary, national) {
-  elements.percentile.textContent = String(national.displayPercent);
+  elements.percentile.textContent = national.displayPercent === 100 ? ">99" : String(national.displayPercent);
   elements.statement.textContent = national.statement;
   elements.context.textContent = `${euro.format(salary)} brutos al año. Datos ${national.source.referenceYear}.`;
   elements.quality.textContent = national.quality === "caution" ? "Muestra con cautela" : "Muestra publicable";

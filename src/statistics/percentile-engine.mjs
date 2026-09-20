@@ -105,10 +105,13 @@ export function compareSalary(dataset, request, options = {}) {
   }
 
   const displayPercent = roundedPercentile(cohort.rankSteps, request.salary);
+  const statement = displayPercent === 100
+    ? `Tu salario supera al de más del 99 % de ${resolved.label}.`
+    : `Ganas más que el ${displayPercent} % de ${resolved.label}.`;
   return {
     status: "ok",
     displayPercent,
-    statement: `Ganas más que el ${displayPercent} % de ${resolved.label}.`,
+    statement,
     cohortId: cohort.id,
     ageBand: resolved.ageBand ?? cohort.dimensions.ageBand ?? null,
     ageBandLabel: resolved.ageBand ? getAgeBand(resolved.ageBand)?.label ?? null : null,
@@ -123,8 +126,7 @@ export function compareSalary(dataset, request, options = {}) {
       dataset: dataset.provenance.dataset,
       sourceId: dataset.provenance.sourceId,
       referenceYear: dataset.provenance.referenceYear,
-      publishedAt: dataset.provenance.publishedAt,
-      rawSha256: dataset.provenance.rawSha256
+      publishedAt: dataset.provenance.publishedAt
     }
   };
 }

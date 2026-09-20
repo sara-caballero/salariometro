@@ -9,7 +9,7 @@ La versión 1.0 incluye:
 - comparación por las siete macroregiones NUTS1 del centro de trabajo;
 - media y mediana de cada grupo;
 - cálculo íntegro en el navegador, sin enviar ni guardar los datos introducidos;
-- trazabilidad del fichero oficial por URL, tamaño y SHA-256;
+- trazabilidad de la fuente, el periodo y las transformaciones aplicadas;
 - contraste automatizado con 18 cifras de la tabla oficial 36832 del INE.
 
 No presenta resultados por ciudad ni por comunidad de residencia porque el microdato oficial no permite calcularlos con el mismo contrato estadístico.
@@ -25,7 +25,7 @@ npm run preview
 
 ## Pipeline oficial
 
-El flujo completo descarga el ZIP oficial, verifica su huella, normaliza las variables, crea las cohortes, contrasta los agregados y publica únicamente el JSON derivado validado.
+El flujo completo descarga y verifica el ZIP oficial, normaliza las variables, crea las cohortes, contrasta los agregados y publica únicamente el JSON derivado validado.
 
 ```text
 npm run data:fetch

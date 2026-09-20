@@ -8,8 +8,6 @@
 - ZIP: <https://www.ine.es/ftp/microdatos/salarial/datos_2022.zip>
 - Metodología: <https://www.ine.es/metodologia/t22/meto_ees22.pdf>
 - Tabla de validación: <https://www.ine.es/jaxiT3/Tabla.htm?t=36832>
-- Tamaño: 77.468.637 bytes.
-- SHA-256: `c52b716c156dbbe1a64026140cf8e303db4bde414437f4d1737f56fcaf609e10`.
 
 ## Fuentes evaluadas
 

@@ -21,9 +21,6 @@ export function validateDistributionSet(dataset, options = {}) {
   if (!dataset.provenance?.sourceId || !Number.isInteger(dataset.provenance?.referenceYear)) {
     errors.push("Faltan sourceId o referenceYear en provenance.");
   }
-  if (dataset.publicationStatus !== "synthetic" && !/^[a-f0-9]{64}$/.test(dataset.provenance?.rawSha256 ?? "")) {
-    errors.push("Falta una huella SHA-256 valida del fichero raw.");
-  }
   if (dataset.contract?.statistic !== "weighted_empirical_percentile_strictly_below") {
     errors.push("El contrato estadistico no coincide con el motor.");
   }

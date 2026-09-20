@@ -34,7 +34,6 @@ const records = lines.map((line, index) => {
 const dataset = buildDistributionSet(records, {
   sourceId: "ine-ees-2022",
   referenceYear: 2022,
-  rawSha256,
   publicationStatus: "review_required",
   minimumSampleCount: 100,
   cautionSampleCount: 500
