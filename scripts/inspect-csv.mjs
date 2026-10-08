@@ -7,7 +7,7 @@ const { values } = parseArgs({
   options: { input: { type: "string" } }
 });
 if (!values.input) {
-  throw new Error("Uso: npm run data:inspect -- --input ruta/al/fichero.csv");
+  throw new Error("Uso: node scripts/inspect-csv.mjs --input ruta/al/fichero.csv");
 }
 
 const input = path.resolve(values.input);

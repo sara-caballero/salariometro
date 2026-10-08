@@ -14,13 +14,14 @@ La versión 1.0 incluye:
 
 No presenta resultados por ciudad ni por comunidad de residencia porque el microdato oficial no permite calcularlos con el mismo contrato estadístico.
 
-## Desarrollo
+## Publicación
 
-Requiere Node.js 20 o posterior y no tiene dependencias externas.
+La web es estática y se publica directamente con Netlify. No requiere instalación de dependencias, proceso de compilación ni servidor Node en producción. La configuración de despliegue y las cabeceras de seguridad están en `netlify.toml`.
+
+Para comprobar el motor estadístico localmente solo se necesita Node.js 20 o posterior:
 
 ```text
-npm test
-npm run preview
+node --test
 ```
 
 ## Pipeline oficial
@@ -28,11 +29,15 @@ npm run preview
 El flujo completo descarga y verifica el ZIP oficial, normaliza las variables, crea las cohortes, contrasta los agregados y publica únicamente el JSON derivado validado.
 
 ```text
-npm run data:fetch
-npm run data:normalize -- --input data/work/ine-ees-2022/EES_2022.tab
-npm run data:build
-npm run data:validate:official
-npm run data:validate
+node scripts/fetch-source.mjs --source ine-ees-2022
+node scripts/normalize-ees-2022.mjs --input data/work/ine-ees-2022/EES_2022.tab
+node scripts/build-distributions.mjs
+node scripts/validate-official-aggregates.mjs
+node scripts/validate-derived.mjs
 ```
 
 La automatización reproducible está en `.github/workflows/build-official-data.yml`.
+
+## Licencias
+
+El código se publica bajo la licencia MIT. Los datos derivados mantienen la atribución y las condiciones de reutilización de la fuente oficial. Consulta `NOTICE.md` para los detalles.

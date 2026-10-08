@@ -1,9 +1,9 @@
 .env
 .env.*
-node_modules/
-dist/
+.agents/
+.codex/
+.netlify/
 coverage/
-.sites-runtime/
 .DS_Store
 data/raw/*
 !data/raw/.gitkeep

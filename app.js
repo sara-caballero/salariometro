@@ -170,7 +170,7 @@ function renderReady(salary, national) {
   elements.percentile.textContent = national.displayPercent === 100 ? ">99" : String(national.displayPercent);
   elements.statement.textContent = national.statement;
   elements.context.textContent = `${euro.format(salary)} brutos al año. Datos ${national.source.referenceYear}.`;
-  elements.quality.textContent = national.quality === "caution" ? "Muestra con cautela" : "Muestra publicable";
+  elements.quality.textContent = national.quality === "caution" ? "Muestra reducida" : "Datos validados";
   elements.nationalMedian.textContent = euroPrecise.format(national.statistics.median);
   elements.nationalMean.textContent = euroPrecise.format(national.statistics.mean);
   renderDots(national.displayPercent);

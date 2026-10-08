@@ -10,12 +10,12 @@ El flujo conserva cuatro capas:
 ## Ejecución
 
 ```text
-npm run data:fetch
-npm run data:normalize -- --input data/work/ine-ees-2022/EES_2022.tab
-npm run data:build
-npm run data:validate:official
-npm run data:validate
-npm test
+node scripts/fetch-source.mjs --source ine-ees-2022
+node scripts/normalize-ees-2022.mjs --input data/work/ine-ees-2022/EES_2022.tab
+node scripts/build-distributions.mjs
+node scripts/validate-official-aggregates.mjs
+node scripts/validate-derived.mjs
+node --test
 ```
 
 El normalizador falla ante columnas ausentes, códigos desconocidos, valores no numéricos o días remunerados incompatibles. Calcula `SALANUAL` con la fórmula oficial y conserva salario, ponderación, sexo, edad, jornada y región laboral.

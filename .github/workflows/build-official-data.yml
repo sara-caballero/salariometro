@@ -25,14 +25,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
 
       - name: Test the statistical engine
-        run: npm test
+        run: node --test
 
       - name: Download and verify the official source
         shell: bash
@@ -52,12 +52,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npm run data:normalize -- \
+          node scripts/normalize-ees-2022.mjs \
             --input data/work/ine-ees-2022/EES_2022.tab \
             --mapping data/sources/ine-ees-2022.mapping.json
-          npm run data:build
-          npm run data:validate:official
-          npm run data:validate
+          node scripts/build-distributions.mjs
+          node scripts/validate-official-aggregates.mjs
+          node scripts/validate-derived.mjs
 
       - name: Commit the validated derived dataset
         shell: bash
